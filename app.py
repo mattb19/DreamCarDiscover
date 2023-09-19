@@ -41,4 +41,6 @@ def login():
         
         conn = connectDB()
         
+    return render_template("login.html")
+        
         
