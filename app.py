@@ -18,7 +18,6 @@ app.config['SECRET_KEY'] = 'secret!'
 Session(app)
 
 
-
 def connectDB():
     conn = None
     try:
@@ -29,7 +28,7 @@ def connectDB():
 
 
 @app.route("/")
-def hello_world():
+def home():
     return render_template("home.html")
 
 
