@@ -1,0 +1,329 @@
+<html>
+    <body class="bg">
+        <div class="loginScreen" style="position:absolute;right:33.2%;bottom:30%;animation-fill-mode: forwards;">
+            <div class="titleLabel">
+                Sign In
+            </div>
+            <label for="username">Username:</label><br>
+            <input style="padding-left:6px; width:50%; margin-bottom:8px;"type="text" id="username" value=""><br>
+            <label for="password">Password:</label><br>
+            <input style="padding-left:6px; width:50%;margin-bottom:8px;" type="password" id="password" value=""><br>
+    
+            <div id="error2" style="color:white;font-size:26px;z-index:10;"></div><br><br>
+            <button class="login" id="buttonTech"style="position:absolute; left:36.3%; bottom:17.235673%;"><span class="text" style="color:black;">Login</span></button><br><br>
+            <a href="#" class="dont">Don't Have An Account?</a>
+
+        </div>
+    
+        <div class="registerScreen" style="position:absolute;right:33.2%;bottom:30%;animation-fill-mode: forwards;">
+            <div class="titleLabel">
+                Register
+            </div>
+            <label for="username">Username:</label><br>
+            <input style="padding-left:6px; width:50%; margin-bottom:8px;"type="text" id="newusername" value=""><br>
+            <label for="email">Email</label><br>
+            <input style="padding-left:6px; width:50%;margin-bottom:8px;" type="text" id="newemail" value=""><br>
+            <label for="password">Password:</label><br>
+            <input style="padding-left:6px; width:50%;margin-bottom:8px;" type="password" id="newpassword" value=""><br>
+            <label for="confirmPassword">Confirm Password:</label><br>
+            <input style="padding-left:6px; width:50%;margin-bottom:8px;" type="password" id="confirmPassword" value="">
+    
+            <div id="error2" style="color:white;font-size:26px;z-index:10;"></div><br><br>
+            <button class="register" id="buttonTech"style="position:absolute; left:36.3%; bottom:17.235673%;"><span class="text" style="color:black;">Register</span></button><br><br>
+            <div class="already"></div>
+            <a href="#" class="already" ><div class="already"style="position:absolute; right:35.8%; top:87%; color:black; font-weight:normal;">Already have an account?</div></a>
+        </div>
+        
+    </body>
+</html>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.login').on('click', function(event) {
+            var user = (document.getElementById("username").value)
+            var pass = (document.getElementById("password").value)
+            $.ajax({
+                data : {
+                    username : user,
+                    password : pass
+                },
+                type : 'POST',
+                url : '/login'
+            })
+            .done(function(data) {
+                if (data.error) {
+                    $('#errorAlert').text(data.error).show();
+                    console.log("ERROR")
+                    document.getElementsByClassName("error")[0].innerHTML = data.error
+                    $('#successAlert').hide();
+                }
+                else {
+                    $('#successAlert').text(data.name).show();
+                    document.getElementById("error").innerHTML = data
+                    if (data == "SUCCESS") {
+                        window.location = "/";
+                    }
+                    $('#errorAlert').hide();
+                }
+            });
+            event.preventDefault();
+        });
+        $('.register').on('click', function(event) {
+            var user = (document.getElementById("newusername").value)
+            var pass = (document.getElementById("newpassword").value)
+            var email = (document.getElementById("newemail").value)
+            console.log(email)
+            $.ajax({
+                data : {
+                    username : user,
+                    password : pass,
+                    email : email
+                },
+                type : 'POST',
+                url : '/register'
+            })
+            .done(function(data) {
+                if (data.error) {
+                    $('#errorAlert').text(data.error).show();
+                    console.log("ERROR")
+                    document.getElementsByClassName("error")[0].innerHTML = data.error
+                    $('#successAlert').hide();
+                }
+                else {
+                    $('#successAlert').text(data.name).show();
+                    document.getElementById("error2").innerHTML = data;
+                    console.log(document.getElementById("error").innerHTML)
+                    if (data == "SUCCESS") {
+                        window.location = "/";
+                    }
+                    $('#errorAlert').hide();
+                }
+            });
+            event.preventDefault();
+        });
+        $('.already').on('click', function(event) {
+            document.getElementsByClassName("loginScreen")[0].style.visibility="visible";
+            document.getElementsByClassName("registerScreen")[0].style.visibility="visible";
+            document.getElementsByClassName("registerScreen")[0].style.animation = "fadeout 0.3s";
+            document.getElementsByClassName("registerScreen")[0].style.animationFillMode="forwards";
+            document.getElementsByClassName("loginScreen")[0].style.animation = "fadein 0.3s";
+            document.getElementsByClassName("loginScreen")[0].style.animationFillMode="forwards";
+            setTimeout(hideRegister, 500)
+        });
+        $('.dont').on('click', function(event) {
+            console.log('Hello')
+            document.getElementsByClassName("registerScreen")[0].style.visibility="visible";
+            document.getElementsByClassName("loginScreen")[0].style.visibility="visible";
+            document.getElementsByClassName("registerScreen")[0].style.animation = "fadein 0.3s";
+            document.getElementsByClassName("registerScreen")[0].style.animationFillMode="forwards";
+            document.getElementsByClassName("loginScreen")[0].style.animation = "fadeout 0.3s";
+            document.getElementsByClassName("loginScreen")[0].style.animationFillMode="forwards";
+            setTimeout(hideLogin, 500)
+        });
+    });
+    function updateBack() {
+        document.getElementsByClassName("bg")[0].animation = "back 1s;";
+    }
+    function hideLogin() {
+        document.getElementsByClassName("loginScreen")[0].style.visibility="hidden";
+    }
+    function hideRegister() {
+        document.getElementsByClassName("registerScreen")[0].style.visibility="hidden";
+    }
+    updateBack
+</script>
+
+
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+      }
+      
+      .bg {
+        /* The image used */
+        background-image: url("../static/background2.jpg");
+      
+        /* Full height */
+        height: 100%;
+        animation: none 25s infinite;
+      
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+      }
+
+    @keyframes back {
+        0% {background-image: url("../static/background1.jpeg");}
+        20% {background-image: url("../static/background1.jpeg");}
+        25% {background-image: url("../static/background2.jpg");}
+        45% {background-image: url("../static/background2.jpg");}
+        50% {background-image: url("../static/background3.png");}
+        70% {background-image: url("../static/background3.png");}
+        75% {background-image: url("../static/background4.jpeg");}
+        95% {background-image: url("../static/background4.jpeg");}
+        100% {background-image: url("../static/background1.jpeg");}
+
+    }
+    .loginScreen {
+        font-family: "Tahoma", sans-serif;
+        font-weight:bold;
+        color:white;
+        text-align:center;
+        height: 50%;
+        width:30%;
+        padding: 35px;
+        background-image: linear-gradient(#3c1053,#ad5389);
+        position:absolute;
+        right:10%;
+        border-radius: 15px;
+    }
+    .registerScreen {
+        font-family: "Tahoma", sans-serif;
+        font-weight:bold;
+        color:white;
+        text-align:center;
+        height: 50%;
+        width:30%;
+        padding: 35px;
+        background-image: linear-gradient(#3c1053,#ad5389);
+        position:absolute;
+        right:10%;
+        border-radius: 15px;
+    }
+    
+    @keyframes fadeout {
+        from {opacity:1.0;}
+        to {opacity:0.0;}
+    }
+    @keyframes fadein {
+        from {opacity:0.0;}
+        to {opacity:1.0;}
+    }
+    .titleLabel{
+        font-weight:bold;
+        font-size:35px;
+        margin-bottom:13.2px;
+        
+        
+    }
+    .usernameLabel{
+        margin-right:28%;
+        margin-top:5%;
+    }
+    .emailLabel{
+        margin-right:34%;
+        margin-top:1%;
+    }
+    .passwordLabel{
+        margin-right:29%;
+        margin-top:1%;
+    }
+    .confirmPasswordLabel{
+        margin-right:15%;
+        margin-top:1%;
+        
+    }
+    .register{
+        margin-top:-7%;
+        
+    }
+    .usernameInput{
+        background-color:black;
+    }
+    .emailInput{
+
+    }
+    .passwordInput{
+
+    }
+    .confirmInput{
+
+    }
+    #confirmPassword{
+        
+        border: 3px solid purple;
+        border-radius: 8px;
+        height:30px;
+    }
+    #newusername{
+        border: 3px solid purple;
+        border-radius: 8px;
+        height:30px;
+    }
+    #newemail{
+        border: 3px solid purple;
+        border-radius: 8px;
+        height:30px;
+    }
+    #newpassword{
+        border: 3px solid purple;
+        border-radius: 8px;
+        height:30px;
+        
+    }
+    #buttonTech{
+
+        
+        align-items: center;
+       
+        background-color:white;
+        border: 0;
+        border-radius: 10px;
+        box-sizing: border-box;
+        color:dark-black;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        font-family: "Tahoma", sans-serif;
+        font-size: 21px;
+        font-weight: bold;
+        height: 54px;
+        justify-content: center;
+        letter-spacing: .4px;
+        line-height: 1;
+        max-width: 100%;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 3px;
+        text-decoration: none;
+        text-transform: uppercase;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+      
+    #buttonTech:active {
+        outline: 0;
+    }
+      
+    #buttonTech:hover {
+        outline: 0;
+    }
+      
+    #buttonTech span {
+        transition: all 200ms;
+    }
+      
+    #buttonTech:hover span {
+        transform: scale(.9);
+        opacity: .75;
+    }
+    
+    @media screen and (max-width: 991px) {
+        #buttonTech {
+          font-size: 15px;
+          height: 50px;
+        }
+      
+        #buttonTech span {
+          line-height: 50px;
+        }
+      }
+    
+</style>
