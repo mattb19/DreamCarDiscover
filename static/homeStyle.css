@@ -1,11 +1,216 @@
-html {
-    font-family: "Tahoma", sans-serif;
-    font-weight: 600;
-    font-size: 50px;
-    color: rgb(255, 255, 255);
-    text-align: center;
+body {
+    margin: 0;
+    background-color: #ffffff;
 }
 
-body {
-    background: linear-gradient(0.25turn, #000000, #303030, #000000);
+
+
+.welcome {
+    font-family: "Tahoma", sans-serif;
+    font-weight: 600;
+    font-size: 4em;
+    color: rgb(32, 32, 32);
+    text-align: center;
+    opacity: 0.0;
+    animation: welcomeIn 1s ease-in-out;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes welcomeIn {
+    0% {
+        transform: translateY(3em);
+        opacity: 0.0;
+    }
+
+    100% {
+        transform: translateY(1.5em);
+        opacity: 1.0;
+    }
+}
+@keyframes welcomeOut {
+    0% {
+        opacity: 1.0;
+        transform: translateY(1.5em);
+    }
+
+    100% {
+        opacity: 0.0;
+        transform: translateY(1.5em);
+    }
+}
+
+
+
+.welcome2 {
+    font-family: "Tahoma", sans-serif;
+    font-weight: 600;
+    font-size: 4em;
+    color: rgb(32, 32, 32);
+    text-align: center;
+    opacity: 0.0;
+    animation: welcomeIn2 1s ease-in-out;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes welcomeIn2 {
+    0% {
+        transform: translateY(9.5em);
+        opacity: 0.0;
+    }
+
+    100% {
+        transform: translateY(11em);
+        opacity: 1.0;
+    }
+}
+@keyframes welcomeOut2 {
+    0% {
+        opacity: 1.0;
+        transform: translateY(11em);
+    }
+
+    100% {
+        opacity: 0.0;
+        transform: translateY(11em);
+    }
+}
+
+
+
+#bmwFront {
+    position: absolute;
+    opacity: 0.0;
+    width: 25%;
+    right:37.5%;
+    transform: translateY(4em);
+    animation: carIn 1s ease-in-out;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+}
+@keyframes carIn {
+    0% {
+        transform: translateY(7em);
+        opacity: 0.0;
+    }
+    100% {
+        transform: translateY(4.5em);
+        opacity: 1.0;
+    }
+}
+@keyframes carOut {
+    0% {
+        transform: translateY(4.9em);
+        opacity: 1.0;
+        transform: scale(1.0);
+    }
+    100% {
+        transform: translateY(4.9em);
+        opacity: 0.0;
+        transform: scale(20.0);
+    }
+}
+
+
+
+#bmwSide {
+    opacity: 1.0;
+    width: 30%;
+    transform: scaleX(-1);
+    position: absolute;
+    right:0%;
+}
+
+
+
+
+
+
+
+.buttonTech{
+    align-items: center;
+    background-color:rgb(255, 255, 255);
+    border: 0;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color:rgb(0, 0, 0);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font-family: "Tahoma", sans-serif;
+    font-size: 21px;
+    font-weight: bold;
+    width: 6%;
+    left:47%;
+    justify-content: center;
+    letter-spacing: .4px;
+    line-height: 1;
+    max-width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: absolute;
+    opacity: 0.0;
+
+    text-decoration: none;
+    text-transform: uppercase;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    transform: translateY(-6.7em);
+
+    animation: plateIn 1s ease-in-out;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+}
+@keyframes plateIn{
+    0% {
+        transform: translateY(20em);
+        opacity: 0.0;
+    }
+    100% {
+        transform: translateY(18em);
+        opacity: 1.0;
+    }
+}
+@keyframes plateOut {
+    0% {
+        opacity: 1.0;
+        transform: translateY(18em);
+    }
+
+    100% {
+        opacity: 0.0;
+        transform: translateY(18em);
+    }
+}
+    
+.buttonTech:active {
+    outline: 0;
+}
+    
+.buttonTech:hover {
+    outline: 0;
+}
+    
+.buttonTech span {
+    transition: all 200ms;
+}
+    
+.buttonTech:hover span {
+    transform: scale(.9);
+    opacity: .75;
+}
+
+@media screen and (max-width: 991px) {
+    .buttonTech {
+        font-size: 15px;
+        height: 50px;
+    }
+    
+    .buttonTech span {
+        line-height: 50px;
+    }
 }
