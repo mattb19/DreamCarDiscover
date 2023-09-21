@@ -1,15 +1,15 @@
 body {
     margin: 0;
-    background-color: #ffffff;
+    background-color: #000000;
 }
 
 
 
 .welcome {
-    font-family: "Tahoma", sans-serif;
+    font-family: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif;
     font-weight: 600;
     font-size: 4em;
-    color: rgb(32, 32, 32);
+    color: rgb(255, 255, 255);
     text-align: center;
     opacity: 0.0;
     animation: welcomeIn 1s ease-in-out;
@@ -43,10 +43,10 @@ body {
 
 
 .welcome2 {
-    font-family: "Tahoma", sans-serif;
+    font-family: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif;
     font-weight: 600;
     font-size: 4em;
-    color: rgb(32, 32, 32);
+    color: rgb(255, 255, 255);
     text-align: center;
     opacity: 0.0;
     animation: welcomeIn2 1s ease-in-out;
@@ -80,7 +80,7 @@ body {
 
 
 #bmwFront {
-    position: absolute;
+    position: fixed;
     opacity: 0.0;
     width: 25%;
     right:37.5%;
@@ -102,13 +102,11 @@ body {
 @keyframes carOut {
     0% {
         transform: translateY(4.9em);
-        opacity: 1.0;
         transform: scale(1.0);
     }
     100% {
         transform: translateY(4.9em);
-        opacity: 0.0;
-        transform: scale(20.0);
+        transform: scale(200.0);
     }
 }
 
@@ -130,11 +128,12 @@ body {
 
 .buttonTech{
     align-items: center;
-    background-color:rgb(255, 255, 255);
+    background-color:rgb(0, 0, 0);
     border: 0;
+    border-color: black;
     border-radius: 10px;
     box-sizing: border-box;
-    color:rgb(0, 0, 0);
+    color:rgb(255, 255, 255);
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -151,7 +150,7 @@ body {
     padding-right: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
-    position: absolute;
+    position: fixed;
     opacity: 0.0;
 
     text-decoration: none;

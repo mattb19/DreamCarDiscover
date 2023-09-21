@@ -18,15 +18,6 @@ app.config['SECRET_KEY'] = 'secret!'
 Session(app)
 
 
-def connectDB():
-    conn = None
-    try:
-        conn = sqlite3.connect('TheBank.db')
-    except sqlite3.Error as e:
-        print(e)
-    return conn
-
-
 @app.route("/")
 def home():
     return render_template("home.html")

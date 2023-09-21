@@ -9,9 +9,10 @@ myBtn.addEventListener("click", function(e) {
     document.getElementById("bmwFront").style.animationName = "carOut";
     document.getElementById("bmwFront").style.opacity = "1.0";
     document.getElementById("bmwFront").style.animationDelay = "1.2s";
-    setTimeout(loginPage, 2500)
+    document.getElementById("bmwFront").style.animationDuration = "3s";
+    setTimeout(loginPage, 3500)
 });
 
 function loginPage() {
-    window.location.href = "/login"
+    window.location.href = "/templates/tutorial.html"
 }
